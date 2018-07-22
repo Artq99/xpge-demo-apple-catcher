@@ -4,6 +4,7 @@ from xpgext.scene import SimpleScene
 from xpgext.sprite import XPGESprite
 
 from behaviour_scripts.basket import BasketController
+from behaviour_scripts.apple import AppleController
 
 
 class GameScene(SimpleScene):
@@ -17,6 +18,17 @@ class GameScene(SimpleScene):
         basket = XPGESprite(self.scene_manager)
         basket.image = basket_image
         basket.position = (350, 575)
+        basket.name = "basket"
         basket.components.append(BasketController(basket))
 
         self.sprites.append(basket)
+
+        apple_image = pygame.Surface((25, 25))
+        apple_image.fill((125, 125, 0))
+
+        apple = XPGESprite(self.scene_manager)
+        apple.image = apple_image
+        apple.position = (0, 350)
+        apple.components.append(AppleController(apple))
+
+        self.sprites.append(apple)
