@@ -12,19 +12,18 @@ class AppleController(SpriteBehaviour):
         self.screen_rect = pygame.Rect(0, 0, 800, 600)
         self.basket = None
 
-    def on_scene_loaded(self):
-        super().on_scene_loaded()
-
-        self.basket = self.sprite.scene_manager.get_by_name("basket")
-
     def on_update(self):
+        self.basket = self.sprite.scene_manager.get_by_name("basket")
         x, y = self.sprite.position
-        self.sprite.position = (x, y + 1)
+        self.sprite.position = (x, y + 5)
 
         if not self.screen_rect.colliderect(self.sprite.rect):
             # TODO this should be added to XPGE
             self.sprite.scene_manager._sprites.remove(self.sprite)
+            self.sprite.scene_manager.static["apples_number"] -= 1
 
         if self.sprite.rect.colliderect(self.basket.rect):
             self.sprite.scene_manager.static["points"] += 1
             self.sprite.scene_manager._sprites.remove(self.sprite)
+            self.sprite.scene_manager.static["apples_number"] -= 1
+            print("Current points: {}".format(self.sprite.scene_manager.static["points"]))

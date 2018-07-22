@@ -11,7 +11,7 @@ class SceneManager(SimpleSceneManager):
     def __init__(self):
         super().__init__()
 
-        self.static = {"points": 0}
+        self.static = {"points": 0, "apples_number": 0}
 
 
 class AppleCatcher(XPGApplication):
